@@ -1,12 +1,12 @@
 import express from 'express'
 
-import { StatsController } from '../controllers/stats-controller.js'
+import { FishController } from '../controllers/fish-controller.js'
 import createError from 'http-errors'
 import jwt from 'jsonwebtoken'
 
 export const router = express.Router()
 
-const controller = new StatsController()
+const controller = new FishController()
 
 const authenticateJWT = (req, res, next) => {
   const authorization = req.headers.authorization?.split(' ')

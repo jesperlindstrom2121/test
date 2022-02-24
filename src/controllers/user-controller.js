@@ -24,7 +24,7 @@ export class UserController {
 
       const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
         algorithm: 'HS256',
-        expiresIn: '15m'
+        expiresIn: '45m'
       })
 
       res

@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
   },
   password: {
     type: String,
-    minlength: [10, 'The password must be of minimum length 10 characters.'],
+    minlength: [6, 'The password must be of minimum length 6 characters.'],
     required: [true, 'User password required.']
   },
   permissionLevel: Number

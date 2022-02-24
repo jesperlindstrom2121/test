@@ -1,5 +1,5 @@
 import express from 'express'
-import { StatsController } from '../controllers/stats-controller.js'
+import { FishController } from '../controllers/fish-controller.js'
 import { HookController } from '../controllers/hook-controller.js'
 import createError from 'http-errors'
 
@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken'
 
 export const router = express.Router()
 
-const tasksController = new StatsController()
+const tasksController = new FishController()
 const controller = new HookController()
 
 const authenticateJWT = (req, res, next) => {
@@ -36,5 +36,5 @@ const authenticateJWT = (req, res, next) => {
   }
 }
 // Map HTTP verbs and route paths to controller actions.
-router.post('/issue', authenticateJWT, controller.create)
-router.get('/issue/:id', authenticateJWT, controller.getUser)
+router.post('/', authenticateJWT, controller.create)
+router.get('/:id', authenticateJWT, controller.getUser)

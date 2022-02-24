@@ -5,7 +5,7 @@
 
  import express from 'express'
  import { router as tasksRouter } from './user-router.js'
- import { router as statsRouter } from './stats-router.js'
+ import { router as statsRouter } from './fish-router.js'
  import { router as hookRouter } from './hook-router.js'
  import bodyParser from 'body-parser'
 

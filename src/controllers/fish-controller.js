@@ -1,15 +1,14 @@
 import express from 'express'
-import { Catch } from '../model/stats.js'
+import { Catch } from '../model/fish.js'
 import { Hooks } from '../model/hook.js'
 import fetch from 'node-fetch'
-import { links } from '../model/links.js'
 export const router = express.Router()
 
 
 /**
  * Snippet controller
  */
-export class StatsController {
+export class FishController {
 
   async index(req, res, next) {
     try {
@@ -18,14 +17,16 @@ export class StatsController {
           .map(catched => ({
             name: catched.name,
             lake: catched.lake,
-            city: catched.bladType,
-            weight: catched.length,
+            city: catched.city,
+            weight: catched.weight,
             length: catched.length,
             _links: { 
               href: `http://localhost:8080/api/fish/${catched.id}`,
               type: 'PUT, DELETE' }
           }))
       }
+
+      console.log(viewData)
       res
         .status(201)
         .json(viewData)
@@ -43,7 +44,7 @@ export class StatsController {
         lake: req.body.lake,
         city: req.body.bladType,
         weight: req.body.weight,
-        length: req.body.length,
+        length: req.body.length
       })
 
 
@@ -83,15 +84,23 @@ export class StatsController {
 
   async update(req, res, next) {
 
-    const fishCatch = await Catch.updateOne({ _id: req.params.id }, {
-      name: req.body.name,
-      lake: req.body.lake,
-      city: req.body.city,
-      weight: req.body.weight,
-      length: req.body.length
-    })
+    const task = await Catch.findOne({_id: req.params.id})
 
-    res.send(fishCatch)
+    req.task = task
+      req.task.name = req.body.name
+      req.task.lake = req.body.lake
+      req.task.city = req.body.city
+      req.task.weight = req.body.weight
+      req.task.length = req.body.length
+
+      await req.task.save()
+   
+      console.log(req.task)
+
+    res
+    .status(204)
+    .end()
+
   }
 
   async delete(req, res, next) {
