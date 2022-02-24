@@ -24,8 +24,6 @@ const authenticateJWT = (req, res, next) => {
     console.log(payload, 'payload')
     req.user = {
       email: payload.sub,
-      firstName: payload.given_name,
-      lastName: payload.family_name,
       permissionLevel: payload.x_permission_level
     }
 
