@@ -9,7 +9,7 @@ export const router = express.Router()
 const controller = new FishController()
 
 const authenticateJWT = (req, res, next) => {
-  const authorization = req.headers.authorization?.split(' ')
+  const authorization = req.headers.authorization.split(' ')
 
   if (authorization?.[0] !== 'Bearer') {
     next(createError(401))
