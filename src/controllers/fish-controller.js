@@ -21,7 +21,7 @@ export class FishController {
             weight: catched.weight,
             length: catched.length,
             _links: { 
-              href: `http://localhost:8080/api/fish/${catched.id}`,
+              href: `fishcatch.se:8080/api/fish/${catched.id}`,
               type: 'PUT, DELETE' }
           }))
       }
@@ -76,7 +76,7 @@ export class FishController {
     const fishCatch = await Catch.findById(req.params.id)
     const viewdata = {
       fishCatch, _links: { 
-        href: `http://localhost:8080/api/fish/`,
+        href: `fishcatch.se:8080/api/fish/`,
         type: 'GET, POST' }
     }
     res.json(viewdata)
