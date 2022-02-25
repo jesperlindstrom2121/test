@@ -27,7 +27,7 @@
       
       let {url} = req.body
 
-      const authorization = req.headers.authorization?.split(' ')
+      const authorization = req.headers.authorization.split(' ')
       const payload = jwt.verify(authorization[1], process.env.ACCESS_TOKEN_SECRET)
       console.log(payload)
       let hook = new Hooks({
@@ -47,7 +47,7 @@
   async getUser (req, res, next){
 
     let id = req.params.id
-    const authorization = req.headers.authorization?.split(' ')
+    const authorization = req.headers.authorization.split(' ')
       const pay = jwt.verify(authorization[1], process.env.ACCESS_TOKEN_SECRET)
 
       let hook = await Hooks.findOne({_id : id})
