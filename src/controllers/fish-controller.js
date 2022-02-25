@@ -10,6 +10,10 @@ export const router = express.Router()
  */
 export class FishController {
 
+  async greeting(req, res, next){
+    res.json('hello to my api')
+  }
+  
   async index(req, res, next) {
     try {
       const viewData = {

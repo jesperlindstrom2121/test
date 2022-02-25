@@ -17,7 +17,7 @@
  router.use('/api', statsRouter) //
 
  // Webhook: Create a route for the hook
-router.use('/webhook', hookRouter)
+router.use('/api/webhook', hookRouter)
 
 
  router.use('*', (req, res, next) => {

@@ -31,6 +31,7 @@ const authenticateJWT = (req, res, next) => {
   }
 }
 
+router.get('/', controller.greeting)
 router.get('/fish', controller.index)
 router.post('/fish', authenticateJWT, controller.create)
 //router.get('/add', authenticateJWT, controller.index) 
