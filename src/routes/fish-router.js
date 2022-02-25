@@ -11,7 +11,7 @@ const controller = new FishController()
 const authenticateJWT = (req, res, next) => {
   const authorization = req.headers.authorization.split(' ')
 
-  if (authorization?.[0] !== 'Bearer') {
+  if (authorization[0] !== 'Bearer') {
     next(createError(401))
     return
   }
