@@ -12,9 +12,11 @@ import bodyParser from 'body-parser'
 const main = async () => {
   await connectDB()
 
+  
   const app = express()
   const baseURL = process.env.BASE_URL || "/"
 
+  app.set('port', (process.env.PORT || 5000))
   app.use(helmet())
   app.use(cors())
 
@@ -49,7 +51,7 @@ const main = async () => {
   })
 
   // Starts the HTTP server listening for connections.
-  app.listen(process.env.PORT, () => {
+  app.listen(app.get('port'), function() {
     console.log(`Server running at http://localhost:${process.env.PORT}`)
     console.log('Press Ctrl-C to terminate...')
   })
