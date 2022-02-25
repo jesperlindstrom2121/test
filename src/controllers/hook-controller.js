@@ -29,7 +29,6 @@
 
       const authorization = req.headers.authorization?.split(' ')
       const payload = jwt.verify(authorization[1], process.env.ACCESS_TOKEN_SECRET)
-      console.log(payload)
       let hook = new Hooks({
         userId: payload.id, 
         url: url
@@ -52,8 +51,6 @@
 
       let hook = await Hooks.findOne({_id : id})
 
-      console.log(hook, 'hook')
-      console.log(id, 'payid')
       if(id == hook.id){
         res.send(hook)
       }

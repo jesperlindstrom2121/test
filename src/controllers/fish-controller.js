@@ -20,13 +20,13 @@ export class FishController {
             city: catched.city,
             weight: catched.weight,
             length: catched.length,
-            _links: { 
+            _links: {
               href: `http://localhost:8080/api/fish/${catched.id}`,
-              type: 'PUT, DELETE' }
+              type: 'PUT, DELETE'
+            }
           }))
       }
 
-      console.log(viewData)
       res
         .status(201)
         .json(viewData)
@@ -51,17 +51,14 @@ export class FishController {
       await fishCatch.save()
 
       let result = await Hooks.find()
-      console.log(result)
       await Promise.all(result.map(async (i) => {
-        console.log(i)
         let p = JSON.stringify(fishCatch)
-        console.log(p)
         await fetch(i.url, {
           method: 'post',
           body: p,
         })
       }));
-     
+
       res
         .json(fishCatch)
 
@@ -75,42 +72,40 @@ export class FishController {
 
     const fishCatch = await Catch.findById(req.params.id)
     const viewdata = {
-      fishCatch, _links: { 
+      fishCatch, _links: {
         href: `http://localhost:8080/api/fish/`,
-        type: 'GET, POST' }
+        type: 'GET, POST'
+      }
     }
     res.json(viewdata)
   }
 
   async update(req, res, next) {
 
-    const task = await Catch.findOne({_id: req.params.id})
+    const task = await Catch.findOne({ _id: req.params.id })
 
     req.task = task
-      req.task.name = req.body.name
-      req.task.lake = req.body.lake
-      req.task.city = req.body.city
-      req.task.weight = req.body.weight
-      req.task.length = req.body.length
+    req.task.name = req.body.name
+    req.task.lake = req.body.lake
+    req.task.city = req.body.city
+    req.task.weight = req.body.weight
+    req.task.length = req.body.length
 
-      await req.task.save()
-   
-      console.log(req.task)
+    await req.task.save()
 
     res
-    .status(204)
-    .end()
+      .status(204)
+      .end()
 
   }
 
   async delete(req, res, next) {
 
     const task = await Catch.findById(req.params.id)
-    console.log(task)
     await task.delete()
     res
-        .status(204)
-        .end()
+      .status(204)
+      .end()
   }
 
 }

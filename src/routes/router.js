@@ -13,7 +13,6 @@
  
 
  router.use('/api/auth', tasksRouter)
- 
  router.use('/api', statsRouter) //
 
  // Webhook: Create a route for the hook
